@@ -66,6 +66,7 @@ class Assignment:
         # checking if category weight limit has been reached.
         if remaining == 0:
             self.colored_message.print("Total Assignment Weight Limit reached for " + category.upper(), "red")
+            return False
 
         # Check if new_weight will exceed the allowed total
         elif new_weight > remaining:
@@ -93,11 +94,14 @@ class Assignment:
                                            "\nChoose the assignment category(1 or 2):")
 
         #checking if the user selected either 1 or 2 (formative/summative) only.
+        allowed_weight = 0
         if assignment_category_option == "1":
             self.assignment_category = "formative"
+            allowed_weight = 60
 
         elif assignment_category_option == "2":
             self.assignment_category = "summative"
+            allowed_weight = 40
 
         else:
             self.colored_message.print("Invalid choice.", "red")
@@ -105,12 +109,12 @@ class Assignment:
 
         #asking the user to enter the assignment weight and checking if it is a number.
         try:
-            self.assignment_weight = float(input("Enter assignment weight(% of the total grade): "))
+            self.assignment_weight = float(input("Enter assignment weight(out of"+allowed_weight+"): "))
         except ValueError:
             self.colored_message.print("The Assignment weight must be a number.", "red")
             return  # stop the program and handle this error
 
-        #checking if the user entered a valid assignment weight from 0-100
+        #checking if the user entered a valid assignment weight from 0 to the total weight allowed
         if not self.check_remaining_weight(self.assignment_category, self.assignment_weight):
             return  # stop the program and handle this error
 
