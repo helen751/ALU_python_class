@@ -94,14 +94,14 @@ class Assignment:
                                            "\nChoose the assignment category(1 or 2):")
 
         #checking if the user selected either 1 or 2 (formative/summative) only.
-        allowed_weight = 0
+        allowed_weight = None
         if assignment_category_option == "1":
             self.assignment_category = "formative"
-            allowed_weight = 60
+            allowed_weight = "60"
 
         elif assignment_category_option == "2":
             self.assignment_category = "summative"
-            allowed_weight = 40
+            allowed_weight = "40"
 
         else:
             self.colored_message.print("Invalid choice.", "red")
