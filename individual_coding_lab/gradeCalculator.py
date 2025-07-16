@@ -14,7 +14,7 @@ class GradeCalculator:
     def display_grade_total(self):
 
         # Printing table header with column lines
-        self.colored_message.print("\n\t\t\t ====YOUR ALU TRANSCRIPT====", "blue")
+        self.colored_message.print("\n\n\t\t\t __________YOUR ALU TRANSCRIPT__________", "blue")
         print(
             f"| {'Assignment Name':<20} | {'Category':<10} | {'Grade (%)':<10} | {'Weight (%)':<11} | {'Final Grade':<12} |")
         print("|" + "-" * 22 + "|" + "-" * 12 + "|" + "-" * 12 + "|" + "-" * 13 + "|" + "-" * 14 + "|")
@@ -39,7 +39,7 @@ class GradeCalculator:
         summative_total = round(self.total_assignment_calculation['summative'],2)
 
         #adding an extra row and column line to make the output more organised
-        print("|" + "-" * 22 + "|" + "-" * 51 + "|")
+        print("|" + "-" * 22 + "|" + "-" * 54 + "|")
 
         if formative_percent >= 50:
             print(
@@ -59,7 +59,7 @@ class GradeCalculator:
 
         #displaying the fina verdict if user passed both formatives and summative
         #Shows in Red when user fails and also display the gpa in RED
-        print("|" + "-" * 22 + "|" + "-" * 51 + "|")
+        print("|" + "-" * 22 + "|" + "-" * 54 + "|")
 
         if verdict == "PASS":
             self.colored_message.print(f"| {'GPA':<60} | {round(self.total_GPA, 3):<12} |", "green")
