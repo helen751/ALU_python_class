@@ -1,15 +1,19 @@
 from assignment import Assignment #importing the assignment file.
 import gradeCalculator #importing the grade calculator file
-import colored_print_message
+import colored_print_message #importing the colord message file
 
 #creating one instance of the assignment class to use
 assignment = Assignment()
+
+#instance of the colored message class
 colored_message = colored_print_message.ColoredMessage()
+
+#instance of the grade calculator class
 grade_calculator = gradeCalculator.GradeCalculator()
 
-#the main class that starts the application
+#the main class that starts the application and controls the flow
 def main():
-    print("\tWELCOME TO HELEN'S GRADE CALCULATOR")
+    print("\n\n\tWELCOME TO HELEN'S GRADE CALCULATOR")
     option_menu()
 
 #creating an option menu function for good organisation of my app.
@@ -18,6 +22,7 @@ def option_menu():
         "What would you like to do now? \n1] Add new assignment \n2] Remove existing assignment \n3] Calculate Grades \n0] Exit")
     choose = input("Select a valid option: ")
 
+    #based on user selection, calling the required classes
     if choose == "1":
         assignment.add_new_assignment()
         print()
@@ -36,5 +41,5 @@ def option_menu():
         colored_message.print("Thank you for using this App! See you next time!", "yellow")
         exit(0)
 
-
+#calling the main function to start the application
 main();

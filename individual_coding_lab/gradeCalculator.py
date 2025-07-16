@@ -10,7 +10,9 @@ class GradeCalculator:
         self.gpa_scale = 5
         self.total_GPA = None
 
+    #The final function to display the grades and assignment details.
     def display_grade_total(self):
+
         # Printing table header with column lines
         self.colored_message.print("\n\t\t\t ====YOUR ALU TRANSCRIPT====", "blue")
         print(
@@ -27,6 +29,7 @@ class GradeCalculator:
         else:
             verdict = "FAIL"
 
+        #looping through the assignments dictionary and printing their details in a table form
         for category, assignments in self.assignments_dict.items():
             for assignment in assignments:
                 print(
@@ -34,6 +37,9 @@ class GradeCalculator:
 
         formative_total = round(self.total_assignment_calculation['formative'],2)
         summative_total = round(self.total_assignment_calculation['summative'],2)
+
+        #adding an extra row and column line to make the output more organised
+        print("|" + "-" * 22 + "|" + "-" * 51 + "|")
 
         if formative_percent >= 50:
             print(
@@ -43,12 +49,17 @@ class GradeCalculator:
         else:
             self.colored_message.print(f"| {'Formatives (60)':<60} | {f'{formative_total} [{round(formative_percent)}%]':<12} |", "red")
 
+        #displaying summative total in different color depending on if student passed or failed
         if summative_percent >= 50:
             print(
             f"| {'Summatives (40)':<60} | {f'{summative_total} [{round(summative_percent)}%]':<12} |")
 
         else:
             self.colored_message.print(f"| {'Summatives (40)':<60} | {f'{summative_total} [{round(summative_percent)}%]':<12} |", "red")
+
+        #displaying the fina verdict if user passed both formatives and summative
+        #Shows in Red when user fails and also display the gpa in RED
+        print("|" + "-" * 22 + "|" + "-" * 51 + "|")
 
         if verdict == "PASS":
             self.colored_message.print(f"| {'GPA':<60} | {round(self.total_GPA, 3):<12} |", "green")
@@ -72,44 +83,60 @@ class GradeCalculator:
                                            "\n Hence, you FAILED and will REPEAT this course!", "red")
         print()
 
+
+    #function to calculate the GPA based on the grades
     def calculate_gpa(self):
         gpa = 0
+        #looping to get each category total grades in the dictionary
         for each_category_grade in self.total_assignment_calculation.values():
             gpa += float(each_category_grade)
 
+        #calculating the gpa with the formula
         self.total_GPA = (gpa / 100) * self.gpa_scale
+        #appending the gpa to the grades dictionary
         self.total_assignment_calculation["GPA"] = self.total_GPA
+
+        #calling the final function to display grade details and summary
         self.display_grade_total()
 
+
+    #function to calculate the total grades obtained in each category
     def calculate_each_category_grade(self, assignments_dict):
         self.assignments_dict = assignments_dict
 
+        #looping through the dictionary categories
         for category, each_assignment in self.assignments_dict.items():
             i = 0;
             category_grade = 0
 
+            #looping through all items in each category and adding the total grades
             while i < len(each_assignment):
                 category_grade += each_assignment[i]["total_grade"]
 
                 i = i + 1
 
+            #updating the dictionary that stores students final grades
             self.total_assignment_calculation[category] = category_grade
 
         #calling the function to calculate student's gpa
         self.calculate_gpa()
 
+
     def calculate_each_grade(self, assignments_dict):
         #calculating the total grade for each assignment in the dictionary
         #formula = (assignment_grade * assignment_weight) / 100
         self.assignments_dict = assignments_dict
-        self.no_assignments = True
+        no_assignments = True
 
+        #looping through the dictionary to calculate the total grade of each assignment
         for each_assignment in self.assignments_dict.values():
             i = 0;
 
+            #checking if there is no assignment added yet
             if len(each_assignment) != 0:
-                self.no_assignments = False
+                no_assignments = False
 
+                #looping through each category, formative and summative and calculating the total grades.
                 while i<len(each_assignment):
                     each_assignment_grade = each_assignment[i]["grade"]
                     each_assignment_weight = each_assignment[i]["weight_in_per"]
@@ -118,10 +145,11 @@ class GradeCalculator:
 
                     i = i+1
 
-        if self.no_assignments:
+        if no_assignments:
             self.colored_message.print("No Assignments Found!\nPlease add an assignment first.", "red")
 
         else:
+            #calling the function to calculate the total grades in each category
             self.calculate_each_category_grade(self.assignments_dict)
 
 
