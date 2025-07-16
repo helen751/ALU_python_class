@@ -109,7 +109,7 @@ class Assignment:
 
         #asking the user to enter the assignment weight and checking if it is a number.
         try:
-            self.assignment_weight = float(input("Enter assignment weight(out of"+allowed_weight+"): "))
+            self.assignment_weight = float(input("Enter assignment weight(out of "+allowed_weight+"): "))
         except ValueError:
             self.colored_message.print("The Assignment weight must be a number.", "red")
             return  # stop the program and handle this error
