@@ -14,7 +14,7 @@ class GradeCalculator:
     def display_grade_total(self):
 
         # Printing table header with column lines
-        self.colored_message.print("\n\n\t\t\t __________YOUR ALU TRANSCRIPT__________", "blue")
+        self.colored_message.print("\n\n\t\t __________YOUR ALU TRANSCRIPT__________\n", "blue")
         print(
             f"| {'Assignment Name':<20} | {'Category':<10} | {'Grade (%)':<10} | {'Weight (%)':<11} | {'Final Grade':<12} |")
         print("|" + "-" * 22 + "|" + "-" * 12 + "|" + "-" * 12 + "|" + "-" * 13 + "|" + "-" * 14 + "|")
