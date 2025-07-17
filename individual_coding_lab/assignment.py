@@ -64,12 +64,12 @@ class Assignment:
         remaining = max_weight - current_weight
 
         #checking if the new weight entered is a negative number
-        if remaining < 0:
+        if new_weight < 0:
             self.colored_message.colored("NEGATIVE numbers are not allowed as weight", "red")
             return False
 
         #checking if the new weight is 0
-        if remaining == 0:
+        elif new_weight == 0:
             self.colored_message.print("Note: This assignment will not count for your total final grades", "yellow")
 
         # checking if category weight limit has been reached.
