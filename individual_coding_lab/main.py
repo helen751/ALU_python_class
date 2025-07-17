@@ -38,7 +38,7 @@ def option_menu():
         print()
         option_menu()
     else:
-        colored_message.print("Thank you for using this App! See you next time!\n\n", "blue")
+        colored_message.print("\nThank you for using this App! See you next time!\n\n", "blue")
         exit(0)
 
 #calling the main function to start the application
