@@ -65,7 +65,7 @@ class Assignment:
 
         #checking if the new weight entered is a negative number
         if new_weight < 0:
-            self.colored_message.colored("NEGATIVE numbers are not allowed as weight", "red")
+            self.colored_message.print("NEGATIVE numbers are not allowed as weight", "red")
             return False
 
         #checking if the new weight is 0
