@@ -87,14 +87,13 @@ class GradeCalculator:
     #function to calculate the GPA based on the grades
     def calculate_gpa(self):
         gpa = 0
+        self.total_GPA = 0
         #looping to get each category total grades in the dictionary
         for each_category_grade in self.total_assignment_calculation.values():
-            gpa += float(each_category_grade)
+            gpa += each_category_grade
 
         #calculating the gpa with the formula
         self.total_GPA = (gpa / 100) * self.gpa_scale
-        #appending the gpa to the grades dictionary
-        self.total_assignment_calculation["GPA"] = self.total_GPA
 
         #calling the final function to display grade details and summary
         self.display_grade_total()
@@ -111,7 +110,8 @@ class GradeCalculator:
 
             #looping through all items in each category and adding the total grades
             while i < len(each_assignment):
-                category_grade += each_assignment[i]["total_grade"]
+                if each_assignment[i]["total_grade"] > 0:
+                    category_grade += each_assignment[i]["total_grade"]
 
                 i = i + 1
 
