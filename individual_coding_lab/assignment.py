@@ -63,8 +63,17 @@ class Assignment:
         current_weight = sum(a["weight_in_per"] for a in self.assignments_dict[category])
         remaining = max_weight - current_weight
 
-        # checking if category weight limit has been reached.
+        #checking if the new weight entered is a negative number
+        if remaining < 0:
+            self.colored_message.colored("NEGATIVE numbers are not allowed as weight", "red")
+            return False
+
+        #checking if the new weight is 0
         if remaining == 0:
+            self.colored_message.print("Note: This assignment will not count for your total final grades", "yellow")
+
+        # checking if category weight limit has been reached.
+        elif remaining == 0 and new_weight > 0:
             self.colored_message.print("Total Assignment Weight Limit reached for " + category.upper(), "red")
             return False
 
@@ -127,7 +136,7 @@ class Assignment:
 
         #checking if the user entered a valid grade from 0-100
         if self.assignment_grade < 0 or self.assignment_grade > 100:
-            self.colored_message.print("The Assignment grade must be between 0 and 100.", "red")
+            self.colored_message.print("The Assignment grade must be from 0 - 100.", "red")
             return  # stop the program and handle this error
 
         #if all checks are passed and user entered correct assignment details

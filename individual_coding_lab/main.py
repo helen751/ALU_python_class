@@ -13,7 +13,7 @@ grade_calculator = gradeCalculator.GradeCalculator()
 
 #the main class that starts the application and controls the flow
 def main():
-    print("\n\n\tWELCOME TO HELEN'S GRADE CALCULATOR")
+    colored_message.print("\n\n\tWELCOME TO HELEN'S GRADE CALCULATOR", "blue")
     option_menu()
 
 #creating an option menu function for good organisation of my app.
@@ -38,7 +38,7 @@ def option_menu():
         print()
         option_menu()
     else:
-        colored_message.print("Thank you for using this App! See you next time!", "yellow")
+        colored_message.print("Thank you for using this App! See you next time!\n\n", "blue")
         exit(0)
 
 #calling the main function to start the application
